@@ -1,14 +1,38 @@
-<% form_tag session_path do -%>
-<p><label for="login">Login</label><br/>
-<%= text_field_tag 'login' %></p>
-
-<p><label for="password">Password</label><br/>
-<%= password_field_tag 'password' %></p>
-
-<!-- Uncomment this if you want this functionality
-<p><label for="remember_me">Remember me:</label>
-<%= check_box_tag 'remember_me' %></p>
--->
-
-<p><%= submit_tag 'Log in' %></p>
-<% end -%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+	<head>
+		<link rel="stylesheet" type="text/css" href="stylesheets/style.css" />
+	</head>
+	<body>
+		<div id="content">
+			<div id="signin_screen">
+				<span>PitchIn</span><br />
+				<span>Lets all help out.</span><br /> 
+				<div id="signin_form">
+					<% form_tag session_path do -%>
+						<div class="field">
+							<label for="login">Login:</label>
+							<div class="fn">
+								<%= text_field_tag 'login' %>
+							</div>
+						</div>
+						<div class="field">
+							<label for="password">Password:</label>
+							<div class="fn">
+								<%= password_field_tag 'password' %>
+							</div>
+						</div>
+						<div class="field">
+							<label for="remember_me">Remember me:</label>
+							<div class="fn">
+								<%= check_box_tag 'remember_me' %>
+							</div>
+						</div>
+						<p><%= submit_tag 'Log in' %></p>						
+					<% end -%>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,42 @@
+body {
+	background-color: #405A7C;
+	background-image: url(/images/BG.gif);
+	background-repeat: repeat-x;
+	margin: 0;
+	padding: 0;
+}
+
+
+#signin_screen {
+	margin: 200px auto 0 auto;
+	width: 350px;
+	background: white;
+	padding: 6px;
+	
+}
+
+#signin_form {
+	width: 100%;
+	text-align: center;
+	line-height:1.4em;
+	margin: 0 0 5px 0;
+}
+
+.field {
+	line-height:1.4em;
+}
+.field label {
+	color: #777777;
+	display: block;
+	float: left;
+	margin-right: 1em;
+	padding: 0.1em 0;
+	text-align: right;
+	width: 8em;
+}
+.field div {
+	text-align: left;
+	overflow:hidden;
+	margin: 2px;
+	padding: 2px;
+}
