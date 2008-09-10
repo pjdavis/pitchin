@@ -1,0 +1,33 @@
+<p>
+  <b>Name:</b>
+  <%=h @project.name %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%=h @project.description %>
+</p>
+
+<p>
+  <b>Details:</b>
+  <%=h @project.details %>
+</p>
+
+<p>
+  <b>Location:</b>
+  <%=h @project.location %>
+</p>
+
+<p>
+  <b>Contact:</b>
+  <%=h @project.contact_id %>
+</p>
+
+<p>
+  <b>Event date:</b>
+  <%=h @project.event_date %>
+</p>
+
+
+<%= link_to 'Edit', edit_project_path(@project) %> |
+<%= link_to 'Back', projects_path %>

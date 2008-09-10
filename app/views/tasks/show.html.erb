@@ -1,0 +1,38 @@
+<p>
+  <b>Project:</b>
+  <%=h @task.project_id %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @task.name %>
+</p>
+
+<p>
+  <b>Requestor:</b>
+  <%=h @task.requestor_id %>
+</p>
+
+<p>
+  <b>Requested at:</b>
+  <%=h @task.requested_at %>
+</p>
+
+<p>
+  <b>Due at:</b>
+  <%=h @task.due_at %>
+</p>
+
+<p>
+  <b>Expires at:</b>
+  <%=h @task.expires_at %>
+</p>
+
+<p>
+  <b>Status:</b>
+  <%=h @task.status_id %>
+</p>
+
+
+<%= link_to 'Edit', edit_task_path(@task) %> |
+<%= link_to 'Back', tasks_path %>

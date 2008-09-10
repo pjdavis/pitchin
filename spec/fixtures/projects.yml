@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  description: MyString
+  details: MyText
+  location: MyString
+  contact_id: 1
+  event_date: 2008-09-04 09:51:13
+
+two:
+  name: MyString
+  description: MyString
+  details: MyText
+  location: MyString
+  contact_id: 1
+  event_date: 2008-09-04 09:51:13

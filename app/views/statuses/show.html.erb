@@ -1,0 +1,13 @@
+<p>
+  <b>Completed:</b>
+  <%=h @status.completed %>
+</p>
+
+<p>
+  <b>Name:</b>
+  <%=h @status.name %>
+</p>
+
+
+<%= link_to 'Edit', edit_status_path(@status) %> |
+<%= link_to 'Back', statuses_path %>
