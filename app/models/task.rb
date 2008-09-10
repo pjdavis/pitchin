@@ -21,4 +21,9 @@ class Task < ActiveRecord::Base
   def completed?
     status ? status.completed? : false
   end
+  
+  def assigned_to?(user)
+    return true if Assignment.exists?(:user_id => user.id, :task_id => self.id)
+    return false
+  end
 end

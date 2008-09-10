@@ -133,6 +133,16 @@ describe User do
     users(:with_types).avaliable_tasks.should_not include( tasks(:type_three) )
   end
   
+  it "should not show currently assigned tasks in avaliable tasks" do
+    users(:has_tasks).avaliable_tasks.should_not include( tasks(:type_one) )
+  end
+  
+  it "can see current tasks that are assigned to it" do
+    users(:has_tasks).tasks.should include( tasks(:type_one) )
+    users(:has_tasks).tasks.should include( tasks(:type_two) )
+    users(:has_tasks).tasks.should_not include( tasks(:type_three) )
+  end
+  
 protected
   def create_user(options = {})
     record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire', :password_confirmation => 'quire' }.merge(options))

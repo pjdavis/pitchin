@@ -31,7 +31,9 @@ class User < ActiveRecord::Base
   def avaliable_tasks
     tasks = Array.new
     for type in types
-      tasks += type.tasks.find(:all)
+      for task in type.tasks.find(:all)
+        tasks << task unless task.assigned_to?(self)
+      end
     end
     return tasks
   end

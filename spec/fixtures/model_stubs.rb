@@ -56,6 +56,7 @@ ModelStubbing.define_models do
           :created_at => 1.days.ago
           
     stub :with_types
+    stub :has_tasks
   end
   
   model Role do
@@ -123,6 +124,16 @@ ModelStubbing.define_models do
     stub  :type_two,
           :user => users(:with_types),
           :type => types(:type_two)
+    stub  :task_user,
+          :user => users(:has_tasks)
+  end
+  
+  model Assignment do
+    stub :user => users(:has_tasks),
+         :task => tasks(:type_one)
+    
+    stub :task_two,
+         :task => tasks(:type_two)
   end
   
   model Role do
