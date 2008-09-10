@@ -35,7 +35,15 @@ class User < ActiveRecord::Base
         tasks << task unless task.assigned_to?(self)
       end
     end
-    return tasks
+    return tasks.uniq
+  end
+  
+  def projects
+    projects = Array.new
+    for task in tasks
+      projects << task.project
+    end
+    return projects.uniq
   end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.

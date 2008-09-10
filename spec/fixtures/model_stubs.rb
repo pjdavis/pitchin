@@ -95,9 +95,12 @@ ModelStubbing.define_models do
     stub  :projectless,
           :project_id => nil
           
-    stub  :type_one
-    stub  :type_two
-    stub  :type_three
+    stub  :type_one,
+          :project => projects(:default)
+    stub  :type_two,
+          :project => projects(:default)
+    stub  :type_three,
+          :project => projects(:default)
   end
   
   model Type do

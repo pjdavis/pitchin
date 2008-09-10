@@ -143,6 +143,9 @@ describe User do
     users(:has_tasks).tasks.should_not include( tasks(:type_three) )
   end
   
+  it "has many projects through tasks" do
+    users(:has_tasks).projects.should include( projects(:default) )
+  end
 protected
   def create_user(options = {})
     record = User.new({ :login => 'quire', :email => 'quire@example.com', :password => 'quire', :password_confirmation => 'quire' }.merge(options))
