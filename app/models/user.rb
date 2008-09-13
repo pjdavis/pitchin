@@ -11,6 +11,14 @@ class User < ActiveRecord::Base
   
   has_many :user_types
   has_many :types, :through => :user_types
+  
+  has_many :avaliable_tasks
+           :finder_sql => "SELECT tasks.* from tasks " +
+                          "left join assignments on tasks.id = assignments.task_id " +
+                          "join task_types on task_types.task_id = tasks.id " +
+                          "join types on types.id = task_types.type_id " +
+                          "join user_types on user_types.type_id = types.id and user_types.user_id = 1 " +
+                          "where assignments.task_id is NULL; "
 
   validates_presence_of     :login, :email
   validates_presence_of     :password,                   :if => :password_required?
@@ -27,16 +35,6 @@ class User < ActiveRecord::Base
   attr_accessible :login, :email, :password, :password_confirmation
 
   # Methods added by me!
-  
-  def avaliable_tasks
-    tasks = Array.new
-    for type in types
-      for task in type.tasks.find(:all)
-        tasks << task unless task.assigned_to?(self)
-      end
-    end
-    return tasks.uniq
-  end
   
   def projects
     projects = Array.new
