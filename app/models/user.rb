@@ -12,13 +12,22 @@ class User < ActiveRecord::Base
   has_many :user_types
   has_many :types, :through => :user_types
   
-  has_many :avaliable_tasks
-           :finder_sql => "SELECT tasks.* from tasks " +
-                          "left join assignments on tasks.id = assignments.task_id " +
-                          "join task_types on task_types.task_id = tasks.id " +
-                          "join types on types.id = task_types.type_id " +
-                          "join user_types on user_types.type_id = types.id and user_types.user_id = 1 " +
-                          "where assignments.task_id is NULL; "
+  has_many :avaliable_tasks,
+           :class_name => "Task",
+           :finder_sql => 'SELECT tasks.* from tasks ' +
+                          'left join assignments on tasks.id = assignments.task_id ' +
+                          'join task_types on task_types.task_id = tasks.id ' +
+                          'join types on types.id = task_types.type_id ' +
+                          'join user_types on user_types.type_id = types.id and user_types.user_id = #{id} ' +
+                          'where assignments.task_id is NULL or assignments.user_id != #{id}; '
+                          
+  has_many :projects,
+           :class_name => "Project",
+           :finder_sql => 'SELECT projects.* from projects ' +
+                          'left join tasks on tasks.project_id = projects.id ' +
+                          'join assignments on assignments.task_id = tasks.id ' +
+                          'join users on assignments.user_id = users.id ' +
+                          'where users.id = #{id}; '
 
   validates_presence_of     :login, :email
   validates_presence_of     :password,                   :if => :password_required?
@@ -33,16 +42,6 @@ class User < ActiveRecord::Base
   # prevents a user from submitting a crafted form that bypasses activation
   # anything else you want your user to change should be added here.
   attr_accessible :login, :email, :password, :password_confirmation
-
-  # Methods added by me!
-  
-  def projects
-    projects = Array.new
-    for task in tasks
-      projects << task.project
-    end
-    return projects.uniq
-  end
 
   # Authenticates a user by their login name and unencrypted password.  Returns the user or nil.
   def self.authenticate(login, password)
